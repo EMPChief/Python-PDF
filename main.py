@@ -17,7 +17,8 @@ class PDFGenerator(FPDF):
     def footer(self):
         self.set_y(-15)
         self.set_font("Arial", "I", 8)
-        self.cell(0, 10, f"Page {self.page_no()} - Made by EMP Corp", 0, 0, "C")
+        self.cell(
+            0, 10, f"Page {self.page_no()} - Made by EMP Corp", 0, 0, "C")
 
     def content(self, content_text):
         self.cell(0, 10, content_text, ln=True)
@@ -30,7 +31,7 @@ class PDFGenerator(FPDF):
 
             for _ in range(pages):
                 self.add_page()
-                
+
                 self.set_font("Arial", style="B")
                 self.cell(0, 10, f"Topic: {topic}", ln=True)
                 self.cell(0, 1, "", ln=True, border="T")
@@ -40,6 +41,7 @@ class PDFGenerator(FPDF):
     def save_pdf(self, filename):
         self.output(filename)
 
+
 def read_csv(file_path):
     data = []
     with open(file_path, 'r') as file:
@@ -48,6 +50,7 @@ def read_csv(file_path):
         for row in reader:
             data.append(row)
     return data
+
 
 if __name__ == "__main__":
     data = read_csv(INPUT_FILE)
