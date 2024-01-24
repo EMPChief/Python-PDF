@@ -1,40 +1,40 @@
-Order,Topic,Pages
-1,Variables,2
-2,Lists,3
-3,Functions,3
-4,While-loop,2
-5,Methods,3
-6,Match-case,2
-7,For-loop,3
-8,Type-conversion,2
-9,List Indices,2
-10,Tuples,2
-11,Enumerate,2
-12,F-Strings,2
-13,"Write Text Files, Read Text Files",3
-14,File Paths,2
-15,List Comprehensions,2
-16,Comments,2
-17,With-Context Manager,2
-18,"If, Elif, and Else Conditionals",3
-19,Slicing,2
-20,Dictionaries,3
-21,Try-Except and Exceptions,2
-22,Continue Statement,2
-23,Custom Functions,4
-24,Function Arguments,2
-25,Multiple Arguments,2
-26,Decoupling Output,2
-27,Default Arguments,2
-28,Doc Strings,2
-29,Decoupling Functions,2
-30,Local Modules and Import,2
-31,Standard Modules,2
-32,Git and Github,4
-33,Third-Party Modules,2
-34,GUI,2
-35,Web Development with Streamlit,6
-36,Heroku Deployment,2
-37,PDF Generation with PdfKit,4
-38,Data Handling with Pandas,6
-39,Sending Emails,4
+Order,Topic,Pages,Description
+1,Variables,2,This section covers the basics of variables in Python.
+2,Lists,3,Learn how to work with lists and manipulate data efficiently.
+3,Functions,3,Explore the concept of functions and how to define and use them.
+4,While-loop,2,Understand the while loop and its applications in Python.
+5,Methods,3,Discover various methods available for different data types.
+6,Match-case,2,Learn about the new match-case statement introduced in Python 3.10.
+7,For-loop,3,Master the for loop and its usage in iterating over sequences.
+8,Type-conversion,2,Explore different methods of type conversion in Python.
+9,List Indices,2,Understand the indexing of elements in Python lists.
+10,Tuples,2,Learn about tuples an immutable and ordered data type in Python.
+11,Enumerate,2,Explore the enumerate function for iterating over sequences.
+12,F-Strings,2,Discover the formatted string literals in Python (f-strings).
+13,"Write Text Files, Read Text Files",3,Learn how to write and read text files in Python.
+14,File Paths,2,Understand how to work with file paths in Python.
+15,List Comprehensions,2,Master the concise way of creating lists using list comprehensions.
+16,Comments,2,Learn the importance of adding comments in your Python code.
+17,With-Context Manager,2,Understand the with statement and context managers in Python.
+18,"If, Elif, and Else Conditionals",3,Explore conditional statements in Python: if elif and else.
+19,Slicing,2,Learn the powerful slicing technique for sequences in Python.
+20,Dictionaries,3,Discover the dictionary data type and its key-value pairs in Python.
+21,Try-Except and Exceptions,2,Understand error handling using try-except blocks in Python.
+22,Continue Statement,2,Explore the continue statement in Python loops.
+23,Custom Functions,4,Learn how to create custom functions with multiple statements.
+24,Function Arguments,2,Understand different types of function arguments in Python.
+25,Multiple Arguments,2,Explore functions with multiple arguments in Python.
+26,Decoupling Output,2,Learn the concept of decoupling output from functions in Python.
+27,Default Arguments,2,Understand the use of default arguments in Python functions.
+28,Doc Strings,2,Explore documentation strings (docstrings) in Python.
+29,Decoupling Functions,2,Learn how to decouple functions for better code organization.
+30,Local Modules and Import,2,Understand the use of local modules and importing in Python.
+31,Standard Modules,2,Explore the standard modules available in Python.
+32,Git and Github,4,Learn the basics of version control with Git and GitHub.
+33,Third-Party Modules,2,Understand the use of third-party modules in Python.
+34,GUI,2,Explore building graphical user interfaces (GUI) in Python.
+35,Web Development with Streamlit,6,Learn web development using Streamlit for creating interactive apps.
+36,Heroku Deployment,2,Deploy your Python applications on the Heroku platform.
+37,PDF Generation with PdfKit,4,Generate PDFs using PdfKit in Python.
+38,Data Handling with Pandas,6,Master data handling and analysis using the Pandas library.
+39,Sending Emails,4,Learn how to send emails using Python.

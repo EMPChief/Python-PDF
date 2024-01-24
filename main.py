@@ -1,60 +1,67 @@
+import pandas as pd
 from fpdf import FPDF
-import csv
-
-OUTPUT_FILE = "output.pdf"
-INPUT_FILE = "data.csv"
+import glob
 
 
-class PDFGenerator(FPDF):
-    def __init__(self, orientation='p', unit='mm', format='A4'):
-        super().__init__(orientation=orientation, unit=unit, format=format)
-        self.set_auto_page_break(auto=True, margin=15)
-        self.set_font("Arial", size=12)
+class SimpleInvoiceGenerator:
+    def __init__(self, filepaths, output_folder="invoices_pdf/", company_name="Your Company", card_number="XXXX-XXXX-XXXX-XXXX", card_reference="1234"):
+        self.filepaths = filepaths
+        self.output_folder = output_folder
+        self.company_name = company_name
+        self.card_number = card_number
+        self.card_reference = card_reference
 
-    def header(self):
-        self.cell(0, 10, "EMP Corp", 0, 1, "C")
+    def generate_invoices(self):
+        for filepath in self.filepaths:
+            df = pd.read_excel(filepath, sheet_name="Sheet 1")
+            pdf = FPDF(orientation='p', unit='mm', format='A4')
+            pdf.add_page()
 
-    def footer(self):
-        self.set_y(-15)
-        self.set_font("Arial", "I", 8)
-        self.cell(
-            0, 10, f"Page {self.page_no()} - Made by EMP Corp", 0, 0, "C")
+            pdf.set_font("Arial", size=12)
+            pdf.set_font("Arial", style="B", size=16)
+            pdf.cell(0, 10, "Invoice from EMPCorp", 0, 1, "C")
 
-    def content(self, content_text):
-        self.cell(0, 10, content_text, ln=True)
+            # Customer Details
+            pdf.set_font("Arial", size=12)
+            pdf.cell(0, 10, "Invoice Number: " + str(df.iloc[0, 0]), 0, 1, "L")
+            pdf.cell(0, 10, "Invoice Date: " + str(df.iloc[0, 1]), 0, 1, "L")
+            pdf.cell(0, 10, "Customer Name: " + str(df.iloc[0, 2]), 0, 1, "L")
+            pdf.cell(0, 10, "Customer Address: " +
+                     str(df.iloc[0, 3]), 0, 1, "L")
+            pdf.cell(0, 10, "Customer Email: " + str(df.iloc[0, 4]), 0, 1, "L")
 
-    def generate_pdf(self, data):
-        self.set_y(15)
+            # Company Details
+            pdf.ln(10)
+            pdf.cell(0, 10, "Company Name: " + self.company_name, 0, 1, "L")
+            pdf.cell(0, 10, "Card Number: " + self.card_number, 0, 1, "L")
+            pdf.cell(0, 10, "Card Reference: " +
+                     self.card_reference, 0, 1, "L")
 
-        for row in data:
-            topic, pages = row[1], int(row[2])
+            pdf.ln(10)
+            pdf.set_font("Arial", style="B", size=12)
+            col_widths = [40, 60, 30, 30, 30]
 
-            for _ in range(pages):
-                self.add_page()
+            for i, header in enumerate(["Item", "Description", "Quantity", "Unit Price", "Total"]):
+                pdf.cell(col_widths[i], 10, header, 1)
+            pdf.ln(10)
 
-                self.set_font("Arial", style="B")
-                self.cell(0, 10, f"Topic: {topic}", ln=True)
-                self.cell(0, 1, "", ln=True, border="T")
+            for index, row in df.iterrows():
+                for i, col in enumerate(["product_id", "product_name", "amount_purchased", "price_per_unit", "total_price"]):
+                    pdf.cell(col_widths[i], 10, str(row[col]), 1)
+                pdf.ln(10)
 
-                self.content("This is a sample content.")
+            pdf.cell(col_widths[0] + col_widths[1] +
+                     col_widths[2], 10, "Total Amount:", 1)
+            pdf.cell(col_widths[3] + col_widths[4], 10,
+                     str(df['total_price'].sum()), 1)
 
-    def save_pdf(self, filename):
-        self.output(filename)
+            output_filename = f"{self.output_folder}invoice_{df.iloc[0, 0]}.pdf"
+            pdf.output(output_filename)
 
-
-def read_csv(file_path):
-    data = []
-    with open(file_path, 'r') as file:
-        reader = csv.reader(file)
-        next(reader, None)
-        for row in reader:
-            data.append(row)
-    return data
+        print("PDFs generated successfully.")
 
 
-if __name__ == "__main__":
-    data = read_csv(INPUT_FILE)
-
-    pdf_generator = PDFGenerator(orientation='p', unit='mm', format='A4')
-    pdf_generator.generate_pdf(data)
-    pdf_generator.save_pdf(OUTPUT_FILE)
+filepaths = glob.glob("invoices/*.xlsx")
+invoice_generator = SimpleInvoiceGenerator(
+    filepaths, company_name="EMPCorp", card_number="XXXX-XXXX-XXXX-XXXX", card_reference="123124457812")
+invoice_generator.generate_invoices()
