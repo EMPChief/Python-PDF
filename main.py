@@ -3,6 +3,21 @@ from fpdf import FPDF
 import glob
 from datetime import datetime, timedelta
 
+"""Generates PDF invoices from Excel files.
+
+This class takes a list of Excel file paths, company info, 
+and output folder path, and generates a separate PDF invoice for 
+each Excel file. 
+
+The Excel files must have columns for product ID, name, quantity, 
+unit price, and total price.
+
+PDFs are named invoice_{product_id}.pdf in the output folder.
+
+After generating invoices, prints a message that PDFs were 
+generated successfully.
+"""
+
 
 class ProfessionalInvoiceGenerator:
     def __init__(self, filepaths, output_folder="invoices_pdf/", company_name="Your Company", card_number="XXXX-XXXX-XXXX-XXXX", card_reference="1234"):

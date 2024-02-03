@@ -1,6 +1,18 @@
 import pandas as pd
 from fpdf import FPDF
 
+"""
+Generates a PDF report from a CSV file.
+
+Reads data from a CSV file, iterates through the rows, and generates a PDF 
+report with a title, content, and page footer for each row of data.
+
+The PDFGenerator class handles creating the PDF and adding pages, headers, 
+footers and content. The read_csv function reads the data from the CSV file.
+
+The main execution generates the PDFGenerator instance, reads the CSV data, 
+generates the PDF report, and saves it to file.
+"""
 OUTPUT_FILE = "output.pdf"
 INPUT_FILE = "data.csv"
 
